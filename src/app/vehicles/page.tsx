@@ -1,5 +1,6 @@
 import { vehicleService } from '@/features/vehicles/services/vehicleService';
 import VehicleListClient from './VehicleListClient';
+import LogoutButton from '@/features/auth/components/LogoutButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,6 +20,7 @@ export default async function VehiclesPage() {
         <h1 className="text-3xl font-bold text-gray-900">
           Lista de Veículos
         </h1>
+        <LogoutButton />
       </div>
 
       {hasVehicles ? (
