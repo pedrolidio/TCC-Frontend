@@ -1,11 +1,10 @@
+import { env } from '@/config/env';
 import { DrivingConfiguration } from '@/features/configurations/types';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const configurationService = {
   getByVehicleId: async (vehicleId: string): Promise<DrivingConfiguration[]> => {
     try {
-      const res = await fetch(`${API_URL}/vehicles/${vehicleId}/driving-configurations`, {
+      const res = await fetch(`${env.api.url}/vehicles/${vehicleId}/driving-configurations`, {
         cache: 'no-store',
       });
 
@@ -25,7 +24,7 @@ export const configurationService = {
 
   getByIdAndVehicleId: async (vehicleId: string, configId: string): Promise<DrivingConfiguration | null> => {
     try {
-      const res = await fetch(`${API_URL}/vehicles/${vehicleId}/driving-configurations/${configId}`, {
+      const res = await fetch(`${env.api.url}/vehicles/${vehicleId}/driving-configurations/${configId}`, {
         cache: 'no-store',
       });
 

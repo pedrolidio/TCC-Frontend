@@ -1,11 +1,10 @@
+import { env } from '@/config/env';
 import { SensorApiResponse } from '@/features/sensors/types';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const sensorService = {
   getByVehicleId: async (vehicleId: string): Promise<SensorApiResponse | null> => {
     try {
-      const res = await fetch(`${API_URL}/vehicles/${vehicleId}/sensors`, { 
+      const res = await fetch(`${env.api.url}/vehicles/${vehicleId}/sensors`, { 
         cache: 'no-store' 
       });
       

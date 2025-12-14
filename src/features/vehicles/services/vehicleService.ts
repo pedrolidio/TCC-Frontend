@@ -1,11 +1,10 @@
+import { env } from '@/config/env';
 import { Vehicle } from '@/features/vehicles/types';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const vehicleService = {
   getAll: async (): Promise<Vehicle[]> => {
     try {
-      const res = await fetch(`${API_URL}/vehicles`, { 
+      const res = await fetch(`${env.api.url}/vehicles`, { 
         cache: 'no-store',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -24,8 +23,8 @@ export const vehicleService = {
 
   getById: async (id: string): Promise<Vehicle | null> => {
     try {
-      const res = await fetch(`${API_URL}/vehicles/${id}`, {
-        cache: 'no-store', // Dados sempre frescos
+      const res = await fetch(`${env.api.url}/vehicles/${id}`, {
+        cache: 'no-store',
       });
 
       if (!res.ok) {

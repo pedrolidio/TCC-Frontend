@@ -1,6 +1,5 @@
+import { env } from '@/config/env';
 import { SensorDataReading } from '@/features/sensors/types';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const sensorDataReadingService = {
   getByConfigIdAndVehicleId: async (vehicleId: string, configId: string): Promise<SensorDataReading[]> => {
@@ -10,7 +9,7 @@ export const sensorDataReadingService = {
         vehicle_id: vehicleId
       });
 
-      const res = await fetch(`${API_URL}/sensors-data?${params.toString()}`, {
+      const res = await fetch(`${env.api.url}/sensors-data?${params.toString()}`, {
         cache: 'no-store',
       });
 
