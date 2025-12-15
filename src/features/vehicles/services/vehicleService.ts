@@ -1,12 +1,24 @@
+import { cookies } from 'next/headers';
 import { env } from '@/config/env';
 import { Vehicle } from '@/features/vehicles/types';
 
 export const vehicleService = {
   getAll: async (): Promise<Vehicle[]> => {
     try {
+      const cookieStore = await cookies();
+      const token = cookieStore.get('session_token')?.value;
+
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+      };
+
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const res = await fetch(`${env.api.url}/vehicles`, { 
         cache: 'no-store',
-        headers: { 'Content-Type': 'application/json' }
+        headers: headers,
       });
 
       if (!res.ok) {
@@ -23,8 +35,20 @@ export const vehicleService = {
 
   getById: async (id: string): Promise<Vehicle | null> => {
     try {
+      const cookieStore = await cookies();
+      const token = cookieStore.get('session_token')?.value;
+
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+      };
+
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const res = await fetch(`${env.api.url}/vehicles/${id}`, {
         cache: 'no-store',
+        headers: headers,
       });
 
       if (!res.ok) {
