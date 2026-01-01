@@ -59,9 +59,11 @@ export default function LiveSensorMonitor({
     return { validGpsData: validData, hasGpsData: hasData, showMap: show };
   }, [readings, config.include_gps]);
 
+  const showGps = Boolean(config.include_gps);
+
   return (
     <>
-      {config.include_gps && (
+      {showGps && (
         <CollapsibleSection
           title="Rota Realizada"
           description="Visualização do trajeto com base nos dados de GPS coletados."

@@ -24,7 +24,7 @@ export default function SensorDataTable({ config, data }: SensorDataTableProps) 
     );
   }
 
-  const showGps = config.include_gps;
+  const showGps = Boolean(config.include_gps);
 
   return (
     <div className="overflow-x-auto">
