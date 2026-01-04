@@ -8,7 +8,7 @@ import { decodeJWTPayload } from '@/features/auth/utils/jwt';
 import { PERMISSIONS } from '@/features/auth/constants';
 import CollapsibleSection from '@/components/ui/CollapsibleSection';
 import SensorTable from '@/features/sensors/components/SensorTable';
-import DrivingConfigListClient from './DrivingConfigListClient';
+import DrivingConfigListClient from '@/features/configurations/components/DrivingConfigListClient';
 import VehicleDetails from '@/features/vehicles/components/VehicleDetails';
 
 export const dynamic = 'force-dynamic';

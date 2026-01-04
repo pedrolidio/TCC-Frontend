@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { vehicleService } from '@/features/vehicles/services/vehicleService';
-import VehicleListClient from './VehicleListClient';
+import VehicleListClient from '@/features/vehicles/components/VehicleListClient';
 import LogoutButton from '@/features/auth/components/LogoutButton';
 
 export const dynamic = 'force-dynamic';
