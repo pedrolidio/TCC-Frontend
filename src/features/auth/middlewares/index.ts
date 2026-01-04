@@ -43,6 +43,14 @@ export function handleAuthMiddleware(request: NextRequest) {
         return NextResponse.rewrite(new URL('/unauthorized', request.url));
       }
     }
+
+    else if (currentPath.startsWith('/drivers')) {
+      const allowedRoles = PERMISSIONS.DRIVERS;
+
+      if (!allowedRoles.includes(userRole)) {
+        return NextResponse.rewrite(new URL('/unauthorized', request.url));
+      }
+    }
   }
 
   return null;
