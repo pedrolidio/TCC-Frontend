@@ -1,4 +1,4 @@
-import { DrivingConfiguration } from '@/features/configurations/types';
+import { DrivingConfiguration, CreateDrivingConfigurationPayload } from '@/features/configurations/types';
 import { httpClient } from '@/lib/http-client';
 import { HttpError } from '@/errors/HttpError';
 
@@ -31,5 +31,12 @@ export const configurationService = {
       console.error(`Erro configurationService.getById(${configId}):`, error);
       return null;
     }
+  },
+
+  create: async (vehicleId: string, payload: CreateDrivingConfigurationPayload): Promise<void> => {
+    await httpClient(`/vehicles/${vehicleId}/driving-configurations`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
   }
 };

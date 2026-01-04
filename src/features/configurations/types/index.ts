@@ -10,3 +10,10 @@ export interface DrivingConfiguration {
   sample_interval: number;
   sensors: OBDCommand[];
 }
+
+export interface CreateDrivingConfigurationPayload {
+  driver_id: number;
+  gps_enabled: boolean;
+  sampling_interval: number;
+  sensor_ids: number[];
+}

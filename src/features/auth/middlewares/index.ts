@@ -26,8 +26,17 @@ export function handleAuthMiddleware(request: NextRequest) {
       return response;
     }
     
-    if (currentPath.startsWith('/vehicles')) {
-      const userRole = user.role_id;
+    const userRole = user.role_id;
+    
+    if (currentPath.includes('/configurations/')) {
+      const allowedRoles = PERMISSIONS.VEHICLE_CONFIGURATION;
+
+      if (!allowedRoles.includes(userRole)) {
+        return NextResponse.rewrite(new URL('/unauthorized', request.url));
+      }
+    }
+    
+    else if (currentPath.startsWith('/vehicles')) {
       const allowedRoles = PERMISSIONS.VEHICLES;
 
       if (!allowedRoles.includes(userRole)) {
