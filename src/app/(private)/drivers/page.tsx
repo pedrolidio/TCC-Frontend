@@ -45,7 +45,7 @@ export default async function DriversPage() {
       {hasDrivers ? (
         <DriverListClient drivers={drivers} />
       ) : (
-        <div className="text-center p-8 bg-white rounded-lg shadow ring-1 ring-black ring-opacity-5">
+        <div className="text-center p-8 bg-white rounded-lg shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
           <p className="text-gray-600">
             Nenhum condutor encontrado.
           </p>
