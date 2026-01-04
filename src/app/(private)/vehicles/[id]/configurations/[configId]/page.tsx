@@ -37,7 +37,7 @@ export default async function ConfigurationDetailsPage({ params }: ConfigDetails
   
   return (
     <main className="container mx-auto p-4 sm:p-8">
-      <div className="mb-6">
+      <div className="mb-6 flex items-center gap-x-4">
         <Link
           href={`/vehicles/${id}`}
           className="rounded-md bg-gray-200 px-3.5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-300"

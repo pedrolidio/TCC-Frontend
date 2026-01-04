@@ -23,7 +23,7 @@ export default function CollapsibleSection({
   };
 
   return (
-    <div className="mt-8 overflow-hidden bg-white shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+    <div className="mt-8 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
       <button
         type="button"
         className="flex w-full items-center justify-between px-4 py-5 text-left sm:px-6"
