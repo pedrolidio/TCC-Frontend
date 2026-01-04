@@ -42,7 +42,7 @@ export default async function VehiclesPage() {
             Nenhum veículo encontrado.
           </p>
           <p className="text-sm text-gray-400 mt-2">
-            Verifique a conexão com a API de dados veículares.
+            Cadastre um veículo utilizando o sistema embarcado para visualizar suas informações.
           </p>
         </div>
       )}
