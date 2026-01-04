@@ -15,7 +15,7 @@ export default function UnauthorizedPage() {
           Acesso Negado
         </h1>
         <p className="mt-6 text-base leading-7 text-gray-600">
-          A sua conta de usuário não possui as permissões necessárias para visualizar os detalhes desta página.
+          A sua conta de usuário não possui as permissões necessárias para visualizar o conteúdo desta página.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <Link
