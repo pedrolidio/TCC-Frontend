@@ -6,3 +6,9 @@ export interface Driver {
   license: string;
   category: DriverLicenseCategory;
 }
+
+export interface CreateDriverPayload {
+  name: string;
+  license: string;
+  category: DriverLicenseCategory;
+}

@@ -1,4 +1,4 @@
-import { Driver } from '../types';
+import { Driver, CreateDriverPayload } from '../types';
 import { httpClient } from '@/lib/http-client';
 
 export const driverService = {
@@ -9,5 +9,12 @@ export const driverService = {
       console.error('Erro ao buscar condutores:', error);
       return [];
     }
+  },
+
+  create: async (payload: CreateDriverPayload): Promise<void> => {
+    await httpClient('/drivers', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
   }
 };
