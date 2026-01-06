@@ -1,32 +1,32 @@
 import Link from 'next/link';
 import { cookies } from 'next/headers';
-import { driverService } from '@/features/drivers/services/driverService';
+import { userService } from '@/features/users/services/userService';
 import { decodeJWTPayload } from '@/features/auth/utils/jwt';
 import { PERMISSIONS } from '@/features/auth/constants';
-import DriverListClient from '@/features/drivers/components/DriverListClient';
+import UserListClient from '@/features/users/components/UserListClient';
 import LogoutButton from '@/features/auth/components/LogoutButton';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Condutores',
-  description: 'Gestão de motoristas cadastrados',
+  title: 'Gerenciamento de Usuários',
+  description: 'Controle de acesso e permissões',
 };
 
-export default async function DriversPage() {
-  const drivers = await driverService.getAll();
-  const hasDrivers = drivers && drivers.length > 0;
+export default async function UsersPage() {
+  const users = await userService.getAll();
+  const hasUsers = users && users.length > 0;
 
   const cookieStore = await cookies();
   const token = cookieStore.get('session_token')?.value;
 
-  let canViewUsers = false;
-  
+  let canViewDrivers = false;
+
   if (token) {
     const user = decodeJWTPayload(token);
 
-    if (user && PERMISSIONS.USERS.includes(user.role_id)) {
-      canViewUsers = true;
+    if (user && PERMISSIONS.DRIVERS.includes(user.role_id)) {
+      canViewDrivers = true;
     }
   }
 
@@ -35,47 +35,37 @@ export default async function DriversPage() {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
-            Lista de Condutores
+            Usuários do Sistema
           </h1>
         </div>
         
         <div className="flex items-center gap-3">
-          <Link
-            href="/drivers/new"
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
-          >
-            Novo Condutor
-          </Link>
-
-          {canViewUsers && (
+          {canViewDrivers && (
             <Link
-              href="/users"
+              href="/drivers"
               className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
             >
-              Lista de Usuários
+              Lista de Condutores
             </Link>
           )}
-          
+
           <Link
             href="/vehicles"
             className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
           >
             Lista de Veículos
           </Link>
-
+          
           <LogoutButton />
         </div>
       </div>
 
-      {hasDrivers ? (
-        <DriverListClient drivers={drivers} />
+      {hasUsers ? (
+        <UserListClient users={users} />
       ) : (
         <div className="text-center p-8 bg-white rounded-lg shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
           <p className="text-gray-600">
-            Nenhum condutor encontrado.
-          </p>
-          <p className="text-sm text-gray-400 mt-2">
-            Clique no botão acima para cadastrar o primeiro.
+            Nenhum usuário encontrado.
           </p>
         </div>
       )}

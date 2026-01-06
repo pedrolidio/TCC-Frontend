@@ -21,12 +21,17 @@ export default async function VehiclesPage() {
   const token = cookieStore.get('session_token')?.value;
 
   let canViewDrivers = false;
+  let canViewUsers = false;
   
   if (token) {
     const user = decodeJWTPayload(token);
 
     if (user && PERMISSIONS.DRIVERS.includes(user.role_id)) {
       canViewDrivers = true;
+    }
+
+    if (user && PERMISSIONS.USERS.includes(user.role_id)) {
+      canViewUsers = true;
     }
   }
 
@@ -38,6 +43,15 @@ export default async function VehiclesPage() {
         </h1>
 
         <div className="flex items-center gap-3">
+          {canViewUsers && (
+            <Link
+              href="/users"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
+            >
+              Lista de Usuários
+            </Link>
+          )}
+
           {canViewDrivers && (
             <Link
               href="/drivers"
