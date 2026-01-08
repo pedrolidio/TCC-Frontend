@@ -50,13 +50,13 @@ export default function UserTable({ users, onChangePassword, onChangeRole }: Use
                       <div className="flex justify-end gap-2">
                         <button
                           onClick={() => onChangeRole?.(user.id)}
-                          className="text-indigo-600 hover:text-indigo-900 border border-indigo-200 rounded px-2 py-1 bg-indigo-50 hover:bg-indigo-100 transition-colors"
+                          className="text-indigo-600 hover:text-indigo-900 border border-indigo-200 rounded px-2 py-1 bg-indigo-50 hover:bg-indigo-100 transition-colors cursor-pointer"
                         >
                           Alterar Cargo
                         </button>
                         <button
                           onClick={() => onChangePassword?.(user.id)}
-                          className="text-amber-600 hover:text-amber-900 border border-amber-200 rounded px-2 py-1 bg-amber-50 hover:bg-amber-100 transition-colors"
+                          className="text-indigo-600 hover:text-indigo-900 border border-indigo-200 rounded px-2 py-1 bg-indigo-50 hover:bg-indigo-100 transition-colors cursor-pointer"
                         >
                           Alterar Senha
                         </button>
