@@ -16,5 +16,13 @@ export const userService = {
       method: 'POST',
       body: JSON.stringify(payload),
     });
+  },
+
+  updateRole: async (userId: number, roleId: number): Promise<void> => {
+    await httpClient(`/users/${userId}/role`, {
+      method: 'PATCH',
+      body: JSON.stringify({ role_id: roleId }),
+    });
+  },
   }
 };

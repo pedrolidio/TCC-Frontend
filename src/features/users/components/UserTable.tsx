@@ -48,12 +48,14 @@ export default function UserTable({ users, onChangePassword, onChangeRole }: Use
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <div className="flex justify-end gap-2">
-                        <button
-                          onClick={() => onChangeRole?.(user.id)}
-                          className="text-indigo-600 hover:text-indigo-900 border border-indigo-200 rounded px-2 py-1 bg-indigo-50 hover:bg-indigo-100 transition-colors cursor-pointer"
-                        >
-                          Alterar Cargo
-                        </button>
+                        {(user.id != 1) ? (
+                          <button
+                            onClick={() => onChangeRole?.(user.id)}
+                            className="text-indigo-600 hover:text-indigo-900 border border-indigo-200 rounded px-2 py-1 bg-indigo-50 hover:bg-indigo-100 transition-colors cursor-pointer"
+                          >
+                            Alterar Cargo
+                          </button>
+                        ) : <></>}
                         <button
                           onClick={() => onChangePassword?.(user.id)}
                           className="text-indigo-600 hover:text-indigo-900 border border-indigo-200 rounded px-2 py-1 bg-indigo-50 hover:bg-indigo-100 transition-colors cursor-pointer"
