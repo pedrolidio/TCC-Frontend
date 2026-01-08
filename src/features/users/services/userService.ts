@@ -24,5 +24,11 @@ export const userService = {
       body: JSON.stringify({ role_id: roleId }),
     });
   },
+
+  updatePassword: async (userId: number, password: string): Promise<void> => {
+    await httpClient(`/users/${userId}/password`, {
+      method: 'PATCH',
+      body: JSON.stringify({ password }),
+    });
   }
 };
