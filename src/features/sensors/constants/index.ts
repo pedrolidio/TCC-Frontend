@@ -12,3 +12,16 @@ export const SENSOR_LABELS: Record<string, string> = {
   fuel_status: "Status do sistema de combustível",
   dtcs: "Códigos de falha (DTC)"
 } as const;
+
+export const DECIMAL_PRECISION: Record<string, number> = {
+  latitude: 6,
+  longitude: 6,
+  engine_load: 6,
+  throttle_pos_pct: 6,
+  
+  rpm: 2,
+  maf_gps: 2,
+  
+  timing_advance_deg: 1,
+  battery_voltage: 1,
+} as const;

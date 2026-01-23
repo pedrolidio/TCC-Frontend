@@ -2,11 +2,21 @@
 
 import { DrivingConfiguration } from '@/features/configurations/types';
 import { SensorDataReading } from '@/features/sensors/types';
-import { SENSOR_LABELS } from '@/features/sensors/constants';
+import { SENSOR_LABELS, DECIMAL_PRECISION } from '@/features/sensors/constants';
 
-const formatSensorValue = (value: string | number | string[] | undefined): React.ReactNode => {
-  if (value === undefined || value === null) return '-';
-  if (Array.isArray(value)) return value.length > 0 ? value.join(', ') : '-';
+const formatSensorValue = (key: string, value: string | number | string[] | undefined): React.ReactNode => {
+  if (value === undefined || value === null) 
+    return '-';
+  
+  if (typeof value === 'number') {
+    if (key in DECIMAL_PRECISION) {
+      return value.toFixed(DECIMAL_PRECISION[key]);
+    }
+  }
+  
+  if (Array.isArray(value)) 
+    return value.length > 0 ? value.join(', ') : '-';
+
   return value;
 };
 
@@ -69,17 +79,17 @@ export default function SensorDataTable({ config, data }: SensorDataTableProps) 
               {showGps && (
                 <>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-700">
-                    {reading.latitude ?? '-'}
+                    {formatSensorValue("latitude", reading.latitude)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-700">
-                    {reading.longitude ?? '-'}
+                    {formatSensorValue("longitude", reading.longitude)}
                   </td>
                 </>
               )}
 
               {config.sensors.map((sensor) => (
                 <td key={`${reading._id}-${sensor.command}`} className="whitespace-nowrap px-3 py-4 text-sm text-gray-700">
-                  {formatSensorValue(reading[sensor.command])}
+                  {formatSensorValue(sensor.command, reading[sensor.command])}
                 </td>
               ))}
             </tr>
