@@ -42,7 +42,7 @@ export default function DrivingConfigurationDetails({ config }: DrivingConfigura
       />
       <DetailRow 
         label="Intervalo mínimo entre amostras" 
-        value={`${config.sample_interval}s`} 
+        value={`${config.sample_interval} s`} 
         isGray={false} 
       />
     </dl>
