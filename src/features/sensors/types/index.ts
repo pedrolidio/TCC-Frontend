@@ -29,3 +29,8 @@ export interface SensorDataReading {
   dtcs?: string[];
   [key: string]: number | string | string[] | undefined;
 }
+
+export interface SingleSensorReading {
+  timestamp: string;
+  value: number;
+}

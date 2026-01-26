@@ -13,6 +13,11 @@ export const SENSOR_LABELS: Record<string, string> = {
   dtcs: "Códigos de falha (DTC)"
 } as const;
 
+export const NON_NUMERIC_SENSORS: readonly string[] = [
+  'fuel_status', 
+  'dtcs'
+];
+
 export const DECIMAL_PRECISION: Record<string, number> = {
   latitude: 6,
   longitude: 6,

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { configurationService } from '@/features/configurations/services/configurationService';
 import { sensorDataReadingService } from '@/features/sensors/services/sensorDataReadingService';
 import CollapsibleSection from '@/components/ui/CollapsibleSection';
-import SensorTable from '@/features/sensors/components/SensorTable';
+import DrivingConfigSensorsClient from '@/features/configurations/components/DrivingConfigSensorsClient';
 import LiveSensorMonitor from '@/features/sensors/components/LiveSensorMonitor';
 import DrivingConfigurationDetails from '@/features/configurations/components/DrivingConfigurationDetails';
 
@@ -59,9 +59,10 @@ export default async function ConfigurationDetailsPage({ params }: ConfigDetails
         description="Sensores habilitados nesta configuração."
         defaultOpen={false}
       >
-        <SensorTable 
-          sensors={sensors} 
-          emptyMessage="Esta configuração não coleta dados de sensores OBD."
+        <DrivingConfigSensorsClient 
+          vehicleId={id}
+          configId={configId}
+          sensors={sensors}
         />
       </CollapsibleSection>
 
