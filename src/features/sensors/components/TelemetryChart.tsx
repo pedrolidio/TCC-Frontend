@@ -22,7 +22,11 @@ interface TelemetryChartProps {
 }
 
 export default function TelemetryChart({ data, unit, color = '#4f46e5' }: TelemetryChartProps) {
-  const formatTime = (isoString: string) => {
+  const formatTime = (isoString: any) => {
+    if (typeof isoString !== 'string') {
+      return isoString;
+    }
+
     try {
       const date = new Date(isoString);
       return date.toLocaleTimeString('pt-BR', {
@@ -53,7 +57,10 @@ export default function TelemetryChart({ data, unit, color = '#4f46e5' }: Teleme
           <Tooltip 
             contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
             labelFormatter={formatTime}
-            formatter={(value: number) => [`${value.toFixed(2)} ${unit}`, 'Valor']}
+            formatter={(value: any) => [
+              typeof value === 'number' ? `${value.toFixed(2)} ${unit}` : value, 
+              'Valor'
+            ]}
           />
           
           <Line 
