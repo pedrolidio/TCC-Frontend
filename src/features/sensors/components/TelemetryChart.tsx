@@ -18,10 +18,11 @@ interface ChartData {
 interface TelemetryChartProps {
   data: ChartData[];
   unit: string;
+  sensor: string;
   color?: string;
 }
 
-export default function TelemetryChart({ data, unit, color = '#4f46e5' }: TelemetryChartProps) {
+export default function TelemetryChart({ data, unit, sensor, color = '#4f46e5' }: TelemetryChartProps) {
   const formatTime = (isoString: any) => {
     if (typeof isoString !== 'string') {
       return isoString;
@@ -41,18 +42,42 @@ export default function TelemetryChart({ data, unit, color = '#4f46e5' }: Teleme
   };
 
   return (
-    <div className="h-[300px] w-full">
+    <div className="h-[360px] w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
+        <LineChart data={data} margin={{ top: 5, right: 20, left: 5, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis 
             dataKey="time" 
             tick={{ fontSize: 12 }}
             tickFormatter={formatTime}
             minTickGap={30}
+            label={{
+              value: 'Tempo (Horário da Coleta)',
+              position: 'insideBottom',
+              offset: -15,
+              style: {
+                textAnchor: 'middle',
+                fill: '#6b7280',
+                fontSize: 12,
+                fontWeight: 500
+              }
+            }}
           />
 
-          <YAxis tick={{ fontSize: 12 }} />
+          <YAxis 
+            tick={{ fontSize: 12 }} 
+            label={{ 
+              value: `${sensor} (${unit})`, 
+              angle: -90, 
+              position: 'insideLeft',
+              style: { 
+                textAnchor: 'middle', 
+                fill: '#6b7280',
+                fontSize: 12,
+                fontWeight: 500
+              }
+            }}
+          />
 
           <Tooltip 
             contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
@@ -73,7 +98,6 @@ export default function TelemetryChart({ data, unit, color = '#4f46e5' }: Teleme
           />
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-center text-xs text-gray-500 mt-2">Tempo (Horário da Coleta)</p>
     </div>
   );
 }

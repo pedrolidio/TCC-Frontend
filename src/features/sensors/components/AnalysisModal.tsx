@@ -99,7 +99,7 @@ export default function AnalysisModal({
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 p-4 shadow-sm">
                 <h3 className="text-sm font-semibold text-gray-900 mb-4">Evolução Temporal</h3>
-                <TelemetryChart data={chartData} unit={sensor.unit || ''} />
+                <TelemetryChart data={chartData} unit={sensor.unit || ''} sensor={sensorDisplayName} />
               </div>
 
               <div className="space-y-4">
